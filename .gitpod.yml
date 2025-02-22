@@ -13,6 +13,12 @@ tasks:
   - name: Instalar dependencias
     init: gp sync-await bundle
     command: pip install -r requirements.txt
+  # - name: Crear folder para datos y asigna permisos
+  #   init: >
+
+  # - name: Pull el Docker compose
+  #   init: gp sync-await images
+  #   command: docker-compose pull
 
 ports:
   - port: 2181

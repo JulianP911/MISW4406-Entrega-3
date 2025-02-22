@@ -1,5 +1,4 @@
 from .entidades import ImagenMedica
-from .reglas import MinimoUnItinerario, RutaValida
 from .excepciones import TipoObjetoNoExisteEnDominioVuelosExcepcion
 from saludTech.seedwork.dominio.repositorios import Mapeador, Repositorio
 from saludTech.seedwork.dominio.fabricas import Fabrica

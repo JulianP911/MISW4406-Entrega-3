@@ -3,6 +3,7 @@ import uuid
 from pulsar.schema import *
 from saludTech.seedwork.infraestructura.utils import time_millis
 
+
 class Mensaje(Record):
     id = String(default=str(uuid.uuid4()))
     time = Long()

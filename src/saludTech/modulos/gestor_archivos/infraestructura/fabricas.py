@@ -4,7 +4,7 @@ from saludTech.seedwork.dominio.repositorios import Repositorio, EventPayload
 from saludTech.modulos.gestor_archivos.dominio.repositorios import (
     RepositorioImagenMedica,
 )
-from .repositorios import RepositorioImageneMedicaSQLite, RepositorioMetadataSQLite
+from .repositorios import RepositorioImageneMedicaSQLite
 from .excepciones import ExcepcionFabrica
 from .schemas.v1.comandos import ComandoAnonimizarImagenPayload
 

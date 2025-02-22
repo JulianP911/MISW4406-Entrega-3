@@ -3,7 +3,7 @@ from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
 from uuid import UUID
 from .despachadores import unix_time_millis
 from .dto import ImagenMedica as ImagenMedicaDTO
-from .dto import Metadata as MetadataDTO
+from .dto import ImagenMetadata as MetadataDTO
 import datetime
 
 
