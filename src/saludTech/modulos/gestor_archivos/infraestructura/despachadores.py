@@ -1,15 +1,9 @@
 import pulsar
-from pulsar.schema import *
+from pulsar.schema import AvroSchema
 
-from saludTech.modulos.vuelos.infraestructura.schema.v1.eventos import (
-    EventoReservaCreada,
-    ReservaCreadaPayload,
+from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.comandos import (
+    ComandoAnonimizarImagen,
 )
-from saludTech.modulos.vuelos.infraestructura.schema.v1.comandos import (
-    ComandoCrearReserva,
-    ComandoCrearReservaPayload,
-)
-
 from saludTech.seedwork.infraestructura import utils
 
 import datetime
@@ -24,17 +18,16 @@ def unix_time_millis(dt):
 class Despachador:
     def _publicar_mensaje(self, mensaje, topico, schema):
         cliente = pulsar.Client(f"pulsar://{utils.broker_host()}:6650")
-        publicador = cliente.create_producer(
-            topico, schema=AvroSchema(EventoReservaCreada)
-        )
+        publicador = cliente.create_producer(topico, schema=schema)
         publicador.send(mensaje)
         cliente.close()
 
     def publicar_comando(self, comando, topico):
-        # TODO Debe existir un forma de crear el Payload en Avro con base al tipo del comando
-        payload = ComandoCrearReservaPayload(
-            id_usuario=str(comando.id_usuario)
-            # agregar itinerarios
+        payload = ComandoAnonimizarImagen(
+            id_imagen=comando.id_imagen,
+            id_paciente=comando.id_paciente,
+            url=comando.url,
+            fecha_creacion=unix_time_millis(comando.fecha_creacion),
         )
         comando_integracion = ComandoAnonimizarImagen(data=payload)
         self._publicar_mensaje(

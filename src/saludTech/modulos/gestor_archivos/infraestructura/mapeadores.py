@@ -2,57 +2,34 @@
 
 from saludTech.seedwork.dominio.repositorios import Mapeador
 from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
+from uuid import UUID
+from .despachadores import unix_time_millis
+from .dto import ImagenMedica as ImagenMedicaDTO
+from .dto import Metadata as MetadataDTO
+import datetime
 
 
 class MapeadorImagenMedica(Mapeador):
     def obtener_tipo(self) -> type:
         return ImagenMedica.__class__
 
-    def entidad_a_dto(self, entidad: ImagenMedica) -> any:
-        return {
-            "id": str(entidad.id),
-            "id_paciente": str(entidad.id_paciente),
-            "id_estudio": str(entidad.id_estudio),
-            "id_imagen": str(entidad.id_imagen),
-            "url": entidad.url,
-            "fecha_creacion": unix_time_millis(entidad.fecha_creacion),
-        }
+    def entidad_a_dto(self, entidad: ImagenMedica) -> ImagenMedicaDTO:
+        imagen_medica_dto = ImagenMedicaDTO()
+        imagen_medica_dto.id = entidad.id
+        imagen_medica_dto.url = entidad.url
+        imagen_medica_dto.fecha_creacion = entidad.fecha_creacion
 
-    def dto_a_entidad(self, dto: any) -> ImagenMedica:
+        metadata_dto = MetadataDTO()
+        metadata_dto.tipo = entidad.metadata.tipo
+        metadata_dto.formato = entidad.metadata.formato
+
+        imagen_medica_dto.metadata = metadata_dto
+
+        return imagen_medica_dto
+
+    def dto_a_entidad(self, dto: ImagenMedicaDTO) -> ImagenMedica:
         return ImagenMedica(
             id=UUID(dto["id"]),
-            id_paciente=UUID(dto["id_paciente"]),
-            id_estudio=UUID(dto["id_estudio"]),
-            id_imagen=UUID(dto["id_imagen"]),
             url=dto["url"],
-            fecha_creacion=datetime.datetime.utcfromtimestamp(
-                dto["fecha_creacion"] / 1000
-            ),
-        )
-
-
-class MapeadorMetadata(Mapeador):
-    def obtener_tipo(self) -> type:
-        return ImagenMedica.__class__
-
-    def entidad_a_dto(self, entidad: ImagenMedica) -> any:
-        return {
-            "id": str(entidad.id),
-            "id_paciente": str(entidad.id_paciente),
-            "id_estudio": str(entidad.id_estudio),
-            "id_imagen": str(entidad.id_imagen),
-            "url": entidad.url,
-            "fecha_creacion": unix_time_millis(entidad.fecha_creacion),
-        }
-
-    def dto_a_entidad(self, dto: any) -> ImagenMedica:
-        return ImagenMedica(
-            id=UUID(dto["id"]),
-            id_paciente=UUID(dto["id_paciente"]),
-            id_estudio=UUID(dto["id_estudio"]),
-            id_imagen=UUID(dto["id_imagen"]),
-            url=dto["url"],
-            fecha_creacion=datetime.datetime.utcfromtimestamp(
-                dto["fecha_creacion"] / 1000
-            ),
+            fecha_creacion=dto["fecha_creacion"],
         )

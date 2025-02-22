@@ -12,4 +12,4 @@ class MetadataDTO(DTO):
 class ImagenMedicaDTO(DTO):
     id: str = field(default=None)
     url: str = field(default=None)
-    metadata: MetadataDTO = field(default_factory=dict)
+    metadata: MetadataDTO = field(default_factory=MetadataDTO)

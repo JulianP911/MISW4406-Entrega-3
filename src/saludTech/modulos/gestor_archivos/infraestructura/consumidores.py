@@ -1,16 +1,12 @@
-import pulsar, _pulsar
-from pulsar.schema import *
-import uuid
-import time
+from _pulsar import ConsumerType
+from pulsar import Client
+from pulsar.schema import AvroSchema
 import logging
 import traceback
 
 
-from saludTech.modulos.vuelos.infraestructura.schema.v1.eventos import (
-    EventoReservaCreada,
-)
-from saludTech.modulos.vuelos.infraestructura.schema.v1.comandos import (
-    ComandoCrearReserva,
+from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.eventos import (
+    EventoImagenCargada,
 )
 from saludTech.seedwork.infraestructura import utils
 
@@ -18,12 +14,12 @@ from saludTech.seedwork.infraestructura import utils
 def suscribirse_a_eventos():
     cliente = None
     try:
-        cliente = pulsar.Client(f"pulsar://{utils.broker_host()}:6650")
+        cliente = Client(f"pulsar://{utils.broker_host()}:6650")
         consumidor = cliente.subscribe(
             "eventos-gestor-archivos",
-            consumer_type=_pulsar.ConsumerType.Shared,
-            subscription_name="saluTech-sub-eventos",
-            schema=AvroSchema(EventoReservaCreada),  # TODO: Revisar
+            consumer_type=ConsumerType.Shared,
+            subscription_name="saludTech-sub-eventos",
+            schema=AvroSchema(EventoImagenCargada),
         )
 
         while True:
@@ -31,8 +27,6 @@ def suscribirse_a_eventos():
             print(f"Evento recibido: {mensaje.value().data}")
 
             consumidor.acknowledge(mensaje)
-
-        cliente.close()
     except:
         logging.error("ERROR: Suscribiendose al tópico de eventos!")
         traceback.print_exc()

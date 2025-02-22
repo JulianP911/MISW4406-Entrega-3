@@ -1,4 +1,4 @@
-from .entidades import Reserva
+from .entidades import ImagenMedica
 from .reglas import MinimoUnItinerario, RutaValida
 from .excepciones import TipoObjetoNoExisteEnDominioVuelosExcepcion
 from saludTech.seedwork.dominio.repositorios import Mapeador, Repositorio
@@ -13,15 +13,6 @@ class FabricaImagenMedica(Fabrica):
         if isinstance(obj, Entidad):
             return mapeador.entidad_a_dto(obj)
         else:
-            reserva: Reserva = mapeador.dto_a_entidad(obj)
+            imagen_medica: ImagenMedica = mapeador.dto_a_entidad(obj)
 
-            self.validar_regla(MinimoUnItinerario(reserva.itinerarios))
-            [
-                self.validar_regla(RutaValida(ruta))
-                for itin in reserva.itinerarios
-                for odo in itin.odos
-                for segmento in odo.segmentos
-                for ruta in segmento.legs
-            ]
-
-            return reserva
+            return imagen_medica

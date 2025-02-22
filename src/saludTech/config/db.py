@@ -3,6 +3,7 @@ from flask import Flask
 
 db = None
 
+
 def init_db(app: Flask):
-    global db 
+    global db
     db = SQLAlchemy(app)

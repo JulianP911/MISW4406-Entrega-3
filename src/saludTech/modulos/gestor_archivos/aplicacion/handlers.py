@@ -8,6 +8,6 @@ from saludTech.modulos.gestor_archivos.infraestructura.despachadores import Desp
 class HandlerReservaIntegracion(Handler):
 
     @staticmethod
-    def handle_anonimizar_archivo(evento):
+    def handle_anonimizar_archivo(comando):
         despachador = Despachador()
-        despachador.publicar_evento(evento, "eventos-reserva")
+        despachador.publicar_comando(comando, "comandos-anonimizar-imagen")

@@ -14,4 +14,14 @@ tasks:
     init: gp sync-await bundle
     command: pip install -r requirements.txt
 
-
+ports:
+  - port: 2181
+    onOpen: ignore
+  - port: 8080
+    onOpen: ignore
+  - port: 6650
+    onOpen: ignore
+  - port: 2181
+    onOpen: ignore
+  - port: 6650
+    onOpen: ignore
