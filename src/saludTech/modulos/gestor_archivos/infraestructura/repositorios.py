@@ -3,11 +3,21 @@ from saludTech.modulos.gestor_archivos.dominio.repositorios import (
     RepositorioImagenMedica,
 )
 from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
+from saludTech.modulos.gestor_archivos.dominio.fabricas import FabricaImagenMedica
 from .dto import ImagenMedica as ImagenMedicaDTO
 from .mapeadores import MapeadorImagenMedica
 from uuid import UUID
 
 
 class RepositorioImageneMedicaSQLite(RepositorioImagenMedica):
+
+    def __init__(self):
+        self._fabrica_imagen_medica: FabricaImagenMedica = FabricaImagenMedica()
+
+    @property
+    def fabrica_imagen_medica(self):
+        return self._fabrica_imagen_medica
+
     def agregar(self, entity: ImagenMedica):
-        raise NotImplementedError
+        imagen_medica_dto = self.fabrica_imagen_medica(entity, MapeadorImagenMedica())
+        db.session.add(imagen_medica_dto)

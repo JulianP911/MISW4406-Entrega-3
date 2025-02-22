@@ -13,6 +13,7 @@ from saludTech.modulos.gestor_archivos.infraestructura.fabricas import (
 from saludTech.seedwork.infraestructura.uow import UnidadTrabajoPuerto as uow
 
 from .dto import ImagenMedicaDTO
+from .mapeadores import MapeadorImagenMedica
 
 import asyncio
 
@@ -33,15 +34,19 @@ class ServicioImagenMedica(Servicio):
 
     def crear_imagen_medica(self, imagen_dto: ImagenMedicaDTO) -> ImagenMedicaDTO:
         imagen_medica: ImagenMedica = self.fabrica_imagenes_medicas.crear_objeto(
-            imagen_dto, Mape
-        )  # TODO: Hacer mapeadores
-
+            imagen_dto,
+            MapeadorImagenMedica(),
+        )
         imagen_medica.crear_imagen_medica(imagen_medica)
 
-        repositorio = self.fabrica_repositorio.crear_objeto(RepositorioImagenMedica)
+        repositorio = self.fabrica_repositorio.crear_objeto(
+            RepositorioImagenMedica.__class__
+        )
 
         uow.registrar_batch(repositorio.agregar, imagen_medica)
         uow.savepoint()
         uow.commit()
 
-        return self.fabrica_imagenes_medicas.crear_objeto(imagen_medica, Mape)
+        return self.fabrica_imagenes_medicas.crear_objeto(
+            imagen_medica, MapeadorImagenMedica()
+        )

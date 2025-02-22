@@ -3,6 +3,7 @@ from pulsar.schema import AvroSchema
 
 from saludTech.modulos.gestor_archivos.infraestructura.schemas.v1.comandos import (
     ComandoAnonimizarImagen,
+    ComandoAnonimizarImagenPayload,
 )
 from saludTech.seedwork.infraestructura import utils
 
@@ -23,12 +24,7 @@ class Despachador:
         cliente.close()
 
     def publicar_comando(self, comando, topico):
-        payload = ComandoAnonimizarImagen(
-            id_imagen=comando.id_imagen,
-            id_paciente=comando.id_paciente,
-            url=comando.url,
-            fecha_creacion=unix_time_millis(comando.fecha_creacion),
-        )
+        payload = ComandoAnonimizarImagenPayload(id=comando.id, url=comando.url)
         comando_integracion = ComandoAnonimizarImagen(data=payload)
         self._publicar_mensaje(
             comando_integracion, topico, AvroSchema(ComandoAnonimizarImagen)

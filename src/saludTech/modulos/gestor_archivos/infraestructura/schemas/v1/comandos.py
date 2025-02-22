@@ -4,10 +4,8 @@ from saludTech.seedwork.infraestructura.schema.v1.comandos import ComandoIntegra
 
 
 class ComandoAnonimizarImagenPayload(ComandoIntegracion):
-    id_imagen = String()
-    id_paciente = String()
+    id = String()
     url = String()
-    fecha_creacion = Long()
 
 
 class ComandoAnonimizarImagen(ComandoIntegracion):

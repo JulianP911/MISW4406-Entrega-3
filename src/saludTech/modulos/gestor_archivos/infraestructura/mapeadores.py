@@ -1,5 +1,3 @@
-# TODO: Completar cuando haya domino
-
 from saludTech.seedwork.dominio.repositorios import Mapeador
 from saludTech.modulos.gestor_archivos.dominio.entidades import ImagenMedica
 from uuid import UUID
