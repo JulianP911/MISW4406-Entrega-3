@@ -21,3 +21,15 @@ class RepositorioImageneMedicaSQLite(RepositorioImagenMedica):
     def agregar(self, entity: ImagenMedica):
         imagen_medica_dto = self.fabrica_imagen_medica(entity, MapeadorImagenMedica())
         db.session.add(imagen_medica_dto)
+
+    def obtener_todos(self) -> list[ImagenMedica]:
+        pass
+
+    def obtener_por_id(self, id: UUID) -> ImagenMedica:
+        pass
+
+    def actualizar(self, entity: ImagenMedica):
+        pass
+
+    def eliminar(self, entity_id: UUID):
+        pass

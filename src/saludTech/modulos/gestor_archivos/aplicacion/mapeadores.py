@@ -32,6 +32,9 @@ class MapeadorImagenMedica(RepMap):
         return ImagenMedica.__class__
 
     def entidad_a_dto(self, entidad: ImagenMedica) -> ImagenMedicaDTO:
+        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
+        print(entidad)
+        print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
         fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
 
@@ -45,8 +48,8 @@ class MapeadorImagenMedica(RepMap):
 
     def dto_a_entidad(self, dto: ImagenMedicaDTO) -> ImagenMedica:
         return ImagenMedica(
-            dto.id,
-            dto.url,
+            id=dto.id,
+            url=dto.url,
             metadata=MetadataDTO(
                 dto.metadata.tipo,
                 dto.metadata.formato,

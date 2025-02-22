@@ -26,16 +26,8 @@ class ImagenMedica(db.Model):
         "id", db.Text(length=36), default=lambda: str(uuid.uuid4()), primary_key=True
     )
     url = db.Column(db.String(255), nullable=False)
-    fecha_creacion = db.Column(db.Numeric, nullable=False)
-    metadta_tipo = (db.Column("metadata_tipo", db.String),)
-    metadata_formato = (db.Column("metadata_formato", db.String),)
-    db.ForeignKeyConstraint(
-        ["imagen_metadata.tipo", "image_metadata.formato"],
-        ["metadata_tipo", "metadata_formato"],
-    ),
     imagen_metadata = db.relationship(
-        "ImagenMetadata",
-        back_populates="imagenes",
+        "ImagenMetadata", secondary=imagen_medica_metadata, back_populates="imagenes"
     )
 
 
@@ -53,5 +45,6 @@ class ImagenMetadata(db.Model):
     )
     imagenes = db.relationship(
         "ImagenMedica",
+        secondary=imagen_medica_metadata,
         back_populates="imagen_metadata",
     )

@@ -8,5 +8,3 @@ class HandlerImagenMedicaIntegracion(Handler):
     def handle_archivo_publicado(comando):
         despachador = Despachador()
         despachador.publicar_comando(comando, "comandos-anonimizar-imagen")
-
-    def handle_archivo_publicado_dominio(comando): ...

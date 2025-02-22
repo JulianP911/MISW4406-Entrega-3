@@ -21,9 +21,7 @@ class EventoIntegracion(Record):
 
 class ComandoAnonimizarImagenPayload(Record):
     id_imagen = String()
-    id_paciente = String()
     url = String()
-    fecha_creacion = Long()
 
 
 class ComandoAnonimizarImagen(EventoIntegracion):
