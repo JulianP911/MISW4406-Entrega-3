@@ -7,11 +7,37 @@ En el siguiente enlace encontrará el video con los requerimientos solicitados e
 
 ## Entrega 3 - Escenarios de calidad
 
-En la carpeta <code>docs</code> del repositorio se encuentra un archivo .pdf con nombre <strong>Entrega 3 - Escenarios de Calidad</strong> donde se documenta por cada atributo de calidad 3 escenarios de calidad los cuales son: Escalabilidad, Disponibilidad y Configurabiliad/Extensibilidad.
+En la carpeta <code>docs</code> del repositorio se encuentra un archivo .pdf con nombre <strong>Entrega 3 - Escenarios de Calidad</strong> donde se documenta por cada atributo de calidad 3 escenarios de calidad los cuales son: Escalabilidad, Disponibilidad y Configurabiliad/Extensibilidad. Tambien el documento esta disponible en el siguiente enlace para una mejor visualización:
+
+- [Documento - Entrega 3](https://uniandes-my.sharepoint.com/:p:/g/personal/j_padilla_uniandes_edu_co/ETVk5NSPeEhJl95tI7QC2S8BlmiZJg9NpB_JtF3LAc-JyA?e=F1EmUi)
 
 <strong>Importante:</strong> Para el experimento se utilizó como base el escenario de calidad #4 correspondiente al atributo de calidad de disponiblidad para la implementación de los servicios de la arquitectura de solución siguiendo los <strong>principios de DDD</strong> y una aruitectura basada en <strong>eventos</strong>.
 
 ## Entrega 3 - Estructura del proyecto
+
+La estructura del proyecto esta basada de la siguiente forma:
+
+- src: En este directorio encuentra el código fuente del proyecto como se describea continuación utilizando una arquitectura hexagonal:
+  - SaludTech
+    - api
+    - config
+    - modulos
+      - gestor_archivos
+        - aplicación
+        - dominio
+        - infraestructura
+    - seedwork
+      - aplicacion
+      - dominio
+      - infraestructura
+      - presentacion
+  - Anonimizador
+- docs: Directorio con los archivos correspondiente de documentación.
+- .gitignore: Archivo con la definición de archivos que se deben ignorar en el repositorio GIT.
+- .gitpod.yml: Archivo que define las tareas/pasos a ejecutar para configurar su workspace en Gitpod.
+- docker-compose.yml: Archivo que define el entorno de contenedores para Apache Pulsar, configurando servicios esenciales como ZooKeeper, BookKeeper y un broker para gestionar la mensajería distribuida.
+- README.md: La documentación del proyecto de SaludTech.
+- requirements.txt: Archivo con los requerimientos para el correcto funcionamiento del proyecto librerias Python.
 
 ## Entrega 3 - Ejecución del proyecto
 
