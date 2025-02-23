@@ -8,7 +8,6 @@ from .dto import MetadataDTO, ImagenMedicaDTO
 class MapeadorImagenMedicaDTOJson(AppMap):
     def externo_a_dto(self, externo: dict) -> ImagenMedicaDTO:
         imagen_medica_dto = ImagenMedicaDTO(
-            id=externo["id"],
             url=externo["url"],
             metadata=MetadataDTO(
                 tipo=externo["metadata"]["tipo"],
@@ -35,7 +34,7 @@ class MapeadorImagenMedica(RepMap):
         print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
         print(entidad)
         print("=========DESDE MAPEADOR IMAGEN MEDICA==========")
-        fecha_creacion = entidad.fecha_creacion.strftime(self._FORMATO_FECHA)
+        fecha_creacion = None
         fecha_actualizacion = entidad.fecha_actualizacion.strftime(self._FORMATO_FECHA)
 
         return ImagenMedicaDTO(

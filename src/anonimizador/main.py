@@ -20,7 +20,7 @@ class EventoIntegracion(Record):
 
 
 class ComandoAnonimizarImagenPayload(Record):
-    id_imagen = String()
+    id = String()
     url = String()
 
 

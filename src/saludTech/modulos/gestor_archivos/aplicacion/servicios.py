@@ -52,7 +52,7 @@ class ServicioImagenMedica(Servicio):
         repositorio = self.fabrica_repositorio.crear_objeto(
             RepositorioImagenMedica.__class__
         )
-        uow.clean()  # TODO Eliminar cuando funcione todo
+        # uow.clean()  # TODO Eliminar cuando funcione todo
         uow.registrar_batch(repositorio.agregar, imagen_medica)
         uow.savepoint()
         uow.commit()

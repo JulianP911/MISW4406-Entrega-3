@@ -29,7 +29,7 @@ def comenzar_consumidor():
     threading.Thread(target=gestor_archivos.suscribirse_a_eventos).start()
 
     # Suscripción a comandos
-    # threading.Thread(target=gestor_archivos.suscribirse_a_comandos).start()
+    threading.Thread(target=gestor_archivos.suscribirse_a_comandos).start()
 
 
 def create_app(configuracion={}):
