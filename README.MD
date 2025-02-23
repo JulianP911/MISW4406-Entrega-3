@@ -1,4 +1,4 @@
-# Entrega 3
+# Entrega 3 - Diseño de la experimentación y POC de servicio
 
 > [!NOTE]  
 > Se debe tener instalado pip == 22.2.2 y python 3.10.7
