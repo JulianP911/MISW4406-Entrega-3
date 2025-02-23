@@ -1,5 +1,20 @@
 # Entrega 3 - Diseño de la experimentación y POC de servicio
 
+## Entrega 3 - Video explicación desarrollo
+
+En el siguiente enlace encontrará el video con los requerimientos solicitados en la entrega 3:
+- [Video - Entrega 3](https://uniandes-my.sharepoint.com/:v:/g/personal/j_padilla_uniandes_edu_co/ERqlYuuoMfNLhz1yfFIVFwcBmSHcUkOpIFu1-KxIwbXwUw?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=huwEcU)
+
+## Entrega 3 - Escenarios de calidad
+
+En la carpeta <code>docs</code> del repositorio se encuentra un archivo .pdf con nombre <strong>Entrega 3 - Escenarios de Calidad</strong> donde se documenta por cada atributo de calidad 3 escenarios de calidad los cuales son: Escalabilidad, Disponibilidad y Configurabiliad/Extensibilidad.
+
+<strong>Importante:</strong> Para el experimento se utilizó como base el escenario de calidad #4 correspondiente al atributo de calidad de disponiblidad para la implementación de los servicios de la arquitectura de solución siguiendo los <strong>principios de DDD</strong> y una aruitectura basada en <strong>eventos</strong>.
+
+## Entrega 3 - Estructura del proyecto
+
+## Entrega 3 - Ejecución del proyecto
+
 > [!NOTE]  
 > Se debe tener instalado pip == 22.2.2 y python 3.10.7
 
