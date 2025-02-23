@@ -4,6 +4,7 @@ from saludTech.seedwork.infraestructura.schema.v1.eventos import EventoIntegraci
 
 class ImagenCargadaPayload(Record):
     id = String()
+    id_paciente = String()
     url = String()
 
 
