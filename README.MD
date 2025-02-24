@@ -39,19 +39,31 @@ La estructura del proyecto esta basada de la siguiente forma:
 - README.md: La documentación del proyecto de SaludTech.
 - requirements.txt: Archivo con los requerimientos para el correcto funcionamiento del proyecto librerias Python.
 
+<strong>Importante:</strong> A nivel de código se puede evidenciar el uso de entidades, objetos valor, seedwork, servicios, módulos, agregaciones, fabricas, repositorio, puertos, adpatadores, persistencia en base de datos sql y comunicación entre módulos por medio de eventos y comandos usando el patrón CQS.
+
 ## Entrega 3 - Ejecución del proyecto
 
 > [!NOTE]  
-> Se debe tener instalado pip == 22.2.2 y python 3.10.7
+> Se necesita para correr el proyecto tener instalado pip == 22.2.2 y python 3.10.7
 
-## Como correr el proyecto
+A continuación, se describen los pasos para correr el proyecto:
 
-1. Correr los siguientes comandos para crear el directorio data, en caso de que no exista
+1. Correr los siguientes comandos para crear el directorio data, en caso de que no exista:
    ```bash
     sudo mkdir -p ./data/zookeeper ./data/bookkeeper
     sudo chown -R 10000 data
    ```
-2. Correr `docker compose up` lo cual inicia pulsar y sus dependencias
-3. Instalar las dependencias con `pip install -r requirements.txt`
-4. Correr el api con `flask --app src/saludTech/api/ run`. Este corre en el puerto 5000
-5. En otra terminal correr el anonimizador con `python /src/anonimizador/main.py`
+2. Ejecutar el manejador de contenedoras con el siguiente comando: `docker compose up` para inicia Apache Pulsar y sus dependencias asociadas.
+3. Instalar las dependencias con `pip install -r requirements.txt` necesarias para el proyecto.
+4. Ejecutar aplicación SaludTech con el siguiente comando: `flask --app src/saludTech/api/ run` este corre en el puerto 5000.
+5. En otra terminal ejecutar el anonimizador con el siguiente comando: `python /src/anonimizador/main.py`.
+6. Abrir postman y realizar una péticion de tipo POST a la url `localhost:5000/imagen_medica` y mandar el objeto para la ejecución correcta.
+   ```bash
+    { 
+       "url": "www.imagen-medica.com",
+       "metadata": {
+          "tipo": "rayos-x"
+          "formato": "lateral femur"
+       }
+    }
+   ```
